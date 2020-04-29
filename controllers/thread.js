@@ -4,17 +4,36 @@ const connection = require('../models/db');
 
 router.get('/', (req, res) => {
   connection.query('SELECT * FROM THREAD;', (err, result) => {
-    for(let i=0; i<result.length; i++){
-      let [day, month, date, year] = result[i].INS_DATE.toString().split(' ');
-      result[i].INS_DATE = year + '/' + monthToNum(month) + '/' + date
+    if(!err){
+      for(let i=0; i<result.length; i++){
+        let [day, month, date, year] = result[i].INS_DATE.toString().split(' ');
+        result[i].INS_DATE = year + '/' + monthToNum(month) + '/' + date
+      }
+  
+      res.render('layouts/forum', {
+        thread: result,
+        style: "/css/thread"
+      })
+    } else {
+      console.log("Error in retrieving employee list : " + err);
     }
-
-    res.render('layouts/forum', {
-      thread: result,
-      style: "/css/thread"
-    })
   })
 });
+
+router.get('/write', (req, res) => {
+  res.render('layouts/write')
+})
+
+router.post('/write', (req, res) => {
+  let { writer, subject, content } = req.body;
+  connection.query(`INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT) VALUES ('${writer}', '${subject}', '${content}')`, (err, result) => {
+    if(!err){
+      res.send('success')
+    } else {
+      console.log("Error in thread insertion : " + err);
+    }
+  })
+})
 
 function monthToNum(month){
   switch(month){
