@@ -47,7 +47,39 @@ router.get('/read/:id', (req, res) => {
         style: "/css/thread"
       })
     } else {
-      console.log('Error in thread reading : ' + err);
+      console.log('Error in retreiving thread : ' + err);
+    }
+  })
+})
+
+router.get('/update/:id', (req, res) => {
+  connection.query(`SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`, (err, result) => {
+    console.log(result);
+    if(!err){
+      res.render('layouts/update', {
+        thread: result[0],
+        style: "/css/update"
+      })
+    } else {
+      console.log('Error in retreiving thread : ' + err);
+    }
+  })
+})
+
+router.post('/update/:id', (req, res) => {
+  connection.query(`UPDATE THREAD SET THREAD_WRITER = '${req.body.writer}', THREAD_SUBJECT = '${req.body.subject}', THREAD_CONTENT = '${req.body.content}' WHERE THREAD_NUM = ${req.params.id}`, (err, result) => {
+    console.log(result);
+    console.log(err);
+    res.redirect('/');
+  })
+})
+
+router.get('/delete/:id', (req, res) => {
+  connection.query(`DELETE FROM THREAD WHERE THREAD_NUM = ${req.params.id};`, (err, result) => {
+    if(!err){
+      res.redirect('/');
+    } else {
+      console.log('Error in thread deleting : ' + err);
     }
   })
 })
