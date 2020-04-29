@@ -1,11 +1,23 @@
 <div>FORRUM</div>
+<div class="thread-header">
+  <div>글번호</div>
+  <div>제목</div>
+  <div>작성자</div>
+  <div>조회수</div>
+  <div>추천수</div>
+  <div>날짜</div>
+</div>
 {{#each thread}}
-<div>
-  <div class="thread-num">{{this.THREAD_NUM}}</div>
-  <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
-  <div class="tread-writer">{{this.THREAD_WRITER}}</div>
-  <div class="thread-hits">{{this.THREAD_HITS}}</div>
-  <div class="thread-likes">{{this.THREAD_LIKE}}</div>
-  <div class="tread-date">{{this.INS_DATE}}</div>
+<div class="thread">
+  <div class="upper">
+    <div class="thread-num">{{this.THREAD_NUM}}</div>
+    <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
+  </div>
+  <div class="lower">
+    <div class="thread-writer">{{this.THREAD_WRITER}}</div>
+    <div class="thread-hits"><span>view: </span>{{this.THREAD_HITS}}</div>
+    <div class="thread-likes"><span>like: </span>{{this.THREAD_LIKE}}</div>
+    <div class="tread-date">{{this.INS_DATE}}</div>
+  </div>
 </div>
 {{/each}}
