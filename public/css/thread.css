@@ -1,4 +1,8 @@
-a {
+.forum {
+  width: 100%;
+}
+
+.forum a {
   display: block;
   width: 100%;
 }
