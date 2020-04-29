@@ -7,6 +7,7 @@ const express = require('express');
 const path = require('path');
 const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
+const paginate = require('handlebars-paginate');
 const bodyParser = require('body-parser');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 
@@ -24,7 +25,11 @@ app.engine('hbs', exphbs({
   extname: 'hbs', 
   defaultLayout: 'main', 
   layoutsDir: __dirname + '/views/layouts/', 
-  handlebars: allowInsecurePrototypeAccess(handlebars)
+  handlebars: allowInsecurePrototypeAccess(handlebars),
+  helpers: {
+    paginate,
+    customEach: require('./controllers/customEach')
+  }
 }));
 app.set('view engine', 'hbs');
 
