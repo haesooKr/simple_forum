@@ -21,16 +21,33 @@ router.get('/', (req, res) => {
 });
 
 router.get('/write', (req, res) => {
-  res.render('layouts/write')
+  res.render('layouts/write', {
+    style: "/css/thread"
+  })
 })
 
 router.post('/write', (req, res) => {
   let { writer, subject, content } = req.body;
   connection.query(`INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT) VALUES ('${writer}', '${subject}', '${content}')`, (err, result) => {
     if(!err){
-      res.send('success')
+      res.redirect('/');
     } else {
       console.log("Error in thread insertion : " + err);
+    }
+  })
+})
+
+router.get('/read/:id', (req, res) => {
+  connection.query(`SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`, (err, result) => {
+    if(!err){
+      let [day, month, date, year] = result[0].INS_DATE.toString().split(' ');
+      result[0].INS_DATE = year + '/' + monthToNum(month) + '/' + date
+      res.render('layouts/read', {
+        thread: result[0],
+        style: "/css/thread"
+      })
+    } else {
+      console.log('Error in thread reading : ' + err);
     }
   })
 })
