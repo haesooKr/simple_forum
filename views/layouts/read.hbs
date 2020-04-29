@@ -1,0 +1,13 @@
+<div class="thread-detail">
+  <div class="num">{{thread.THREAD_NUM}}</div>
+  <div class="subject">{{thread.THREAD_SUBJECT}}</div>
+  <div class="writer">{{thread.THREAD_WRITER}}</div>
+  <div class="content">{{thread.THREAD_CONTENT}}</div>
+  <div class="hits"><span>view: </span>{{thread.THREAD_HITS}}</div>
+  <div class="likes"><span>like: </span>{{thread.THREAD_LIKE}}</div>
+  <div class="date">{{thread.INS_DATE}}</div>
+</div>
+<div class="admin-contoller">
+  <a href="/update/{{thread.THREAD_NUM}}">수정</a>
+  <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
+</div>
