@@ -14,10 +14,10 @@ router.get('/', (req, res) => {
   
       let currentPage = req.query.p ? Number(req.query.p) : 0;
       let pageCount = Math.ceil(result.length / threadsPerPg);
-      if(req.query.p > pageCount){
+      if(req.query.p > pageCount || req.query.p <= 0){
         currentPage = 0;
       } 
-      let start = currentPage ? ((currentPage - 1) * 10) + 1 : 0;
+      let start = currentPage ? ((currentPage - 1) * 10) : 0;
       let end = start + threadsPerPg
 
 
