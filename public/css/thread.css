@@ -1,0 +1,25 @@
+.thread {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.thread-header {
+  display: none;
+}
+
+.thread .upper, .thread .lower {
+  display: flex;
+}
+
+.thread-num {
+  margin: 0 10px;
+}
+
+.thread-hits, .thread-likes {
+  flex: 1;
+}
+.thread-writer, .thread-ate {
+  flex: 2;
+}
+
