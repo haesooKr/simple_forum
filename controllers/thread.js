@@ -54,7 +54,6 @@ router.get('/read/:id', (req, res) => {
 
 router.get('/update/:id', (req, res) => {
   connection.query(`SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`, (err, result) => {
-    console.log(result);
     if(!err){
       res.render('layouts/update', {
         thread: result[0],
@@ -67,10 +66,13 @@ router.get('/update/:id', (req, res) => {
 })
 
 router.post('/update/:id', (req, res) => {
-  connection.query(`UPDATE THREAD SET THREAD_WRITER = '${req.body.writer}', THREAD_SUBJECT = '${req.body.subject}', THREAD_CONTENT = '${req.body.content}' WHERE THREAD_NUM = ${req.params.id}`, (err, result) => {
-    console.log(result);
-    console.log(err);
-    res.redirect('/');
+  
+  connection.query(`UPDATE THREAD SET THREAD_WRITER = '${req.body.writer}', THREAD_SUBJECT = '${req.body.subject}', THREAD_CONTENT = '${req.body.content}', UPD_DATE = '${getESTDate()}' WHERE THREAD_NUM = ${req.params.id}`, (err, result) => {
+    if(!err){
+      res.redirect('/');
+    } else {
+      console.log('Error in thread deleting : ' + err);
+    }
   })
 })
 
@@ -113,6 +115,15 @@ function monthToNum(month){
     default :
       return new Error('Wrong Format of Month Input.')
   }
+}
+
+
+function getESTDate(){
+  offset = -5.0
+  clientDate = new Date();
+  utc = clientDate.getTime() + (clientDate.getTimezoneOffset() * 60000);
+  serverDate = new Date(utc + (3600000*offset));
+  return serverDate.toISOString().slice(0, 19).replace('T', ' ');
 }
 
 
