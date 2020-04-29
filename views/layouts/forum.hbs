@@ -8,25 +8,6 @@
     <div>추천수</div>
     <div>날짜</div>
   </div>
-  <div class="pagination pagination-centered">
-  <ul>
-    {{#paginate pagination type="first"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="/?p={{n}}">First</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="previous"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Prev</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="middle" limit="10"}}
-      <li {{#if active}}class="active"{{/if}}><a href="?p={{n}}">{{n}}</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="next"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Next</a></li>
-    {{/paginate}}
-    {{#paginate pagination type="last"}}
-      <li {{#if disabled}}class="disabled"{{/if}}><a href="?p={{n}}">Last</a></li>
-    {{/paginate}}
-  </ul>
-</div>
   {{#customEach custom}}
   <a href="/read/{{this.THREAD_NUM}}">
     <div class="thread">
@@ -43,6 +24,25 @@
     </div>
   </a>
   {{/customEach}}
+  <div class="pagination">
+    <ul>
+      {{#paginate pagination type="first"}}
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="/?p={{n}}">First</a></li>
+      {{/paginate}}
+      {{#paginate pagination type="previous"}}
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Prev</a></li>
+      {{/paginate}}
+      {{#paginate pagination type="middle" limit="10"}}
+      <li {{#if active}}class="active" {{/if}}><a href="?p={{n}}">{{n}}</a></li>
+      {{/paginate}}
+      {{#paginate pagination type="next"}}
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Next</a></li>
+      {{/paginate}}
+      {{#paginate pagination type="last"}}
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Last</a></li>
+      {{/paginate}}
+    </ul>
+  </div>
   <div class="forum-footer">
     <a href="/write">글쓰기</a>
   </div>
