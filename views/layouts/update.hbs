@@ -1,0 +1,6 @@
+<form action="/update/{{thread.THREAD_NUM}}" method="POST">
+  <input type="text" name="writer" placeholder="작성자" value={{thread.THREAD_WRITER}}>
+  <input type="text" name="subject" placeholder="제목" value={{thread.THREAD_SUBJECT}}>
+  <textarea name="content" id="" cols="30" rows="10" placeholder="내용">{{thread.THREAD_CONTENT}}</textarea>
+  <button type="submit">수정</button>
+</form>
