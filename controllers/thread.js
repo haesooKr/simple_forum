@@ -2,17 +2,37 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../models/db');
 
+let threadsPerPg = 10;
+
 router.get('/', (req, res) => {
-  connection.query('SELECT * FROM THREAD;', (err, result) => {
+  connection.query('SELECT * FROM THREAD ORDER BY THREAD_NUM DESC;', (err, result) => {
     if(!err){
       for(let i=0; i<result.length; i++){
         let [day, month, date, year] = result[i].INS_DATE.toString().split(' ');
         result[i].INS_DATE = year + '/' + monthToNum(month) + '/' + date
       }
   
+      let currentPage = req.query.p ? Number(req.query.p) : 0;
+      let pageCount = Math.ceil(result.length / threadsPerPg);
+      if(req.query.p > pageCount){
+        currentPage = 0;
+      } 
+      let start = currentPage ? ((currentPage - 1) * 10) + 1 : 0;
+      let end = start + threadsPerPg
+
+
       res.render('layouts/forum', {
         thread: result,
-        style: "/css/thread"
+        style: "/css/thread",
+        pagination: {
+          page: currentPage,
+          pageCount //total page
+        },
+        custom: {
+          arr: result,
+          start,
+          end
+        }
       })
     } else {
       console.log("Error in retrieving employee list : " + err);
