@@ -8,16 +8,18 @@
   <div>날짜</div>
 </div>
 {{#each thread}}
-<div class="thread">
-  <div class="upper">
-    <div class="thread-num">{{this.THREAD_NUM}}</div>
-    <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
+<a href="/read/{{this.THREAD_NUM}}">
+  <div class="thread">
+    <div class="upper">
+      <div class="thread-num">{{this.THREAD_NUM}}</div>
+      <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
+    </div>
+    <div class="lower">
+      <div class="thread-writer">{{this.THREAD_WRITER}}</div>
+      <div class="thread-hits"><span>view: </span>{{this.THREAD_HITS}}</div>
+      <div class="thread-likes"><span>like: </span>{{this.THREAD_LIKE}}</div>
+      <div class="tread-date">{{this.INS_DATE}}</div>
+    </div>
   </div>
-  <div class="lower">
-    <div class="thread-writer">{{this.THREAD_WRITER}}</div>
-    <div class="thread-hits"><span>view: </span>{{this.THREAD_HITS}}</div>
-    <div class="thread-likes"><span>like: </span>{{this.THREAD_LIKE}}</div>
-    <div class="tread-date">{{this.INS_DATE}}</div>
-  </div>
-</div>
+</a>
 {{/each}}
