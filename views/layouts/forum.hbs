@@ -9,7 +9,7 @@
     <div>날짜</div>
   </div>
   {{#customEach custom}}
-  <a href="/read/{{this.THREAD_NUM}}">
+  <a href="/read/{{this.THREAD_NUM}}" class="link-thread">
     <div class="thread">
       <div class="upper">
         <div class="thread-num">{{this.THREAD_NUM}}</div>
@@ -17,9 +17,9 @@
       </div>
       <div class="lower">
         <div class="thread-writer">{{this.THREAD_WRITER}}</div>
-        <div class="thread-hits"><span>view: </span>{{this.THREAD_HITS}}</div>
-        <div class="thread-likes"><span>like: </span>{{this.THREAD_LIKE}}</div>
         <div class="tread-date">{{this.INS_DATE}}</div>
+        <div class="thread-hits"><span>조회 </span>{{this.THREAD_HITS}}</div>
+        <div class="thread-likes"><span>추천 </span>{{this.THREAD_LIKE}}</div>
       </div>
     </div>
   </a>
@@ -27,19 +27,19 @@
   <div class="pagination">
     <ul>
       {{#paginate pagination type="first"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="/?p={{n}}">First</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="/?p={{n}}">처음</a></li>
       {{/paginate}}
       {{#paginate pagination type="previous"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Prev</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">이전</a></li>
       {{/paginate}}
       {{#paginate pagination type="middle" limit="10"}}
       <li {{#if active}}class="active" {{/if}}><a href="?p={{n}}">{{n}}</a></li>
       {{/paginate}}
       {{#paginate pagination type="next"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Next</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">다음</a></li>
       {{/paginate}}
       {{#paginate pagination type="last"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Last</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">마지막</a></li>
       {{/paginate}}
     </ul>
   </div>
