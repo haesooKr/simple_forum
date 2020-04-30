@@ -59,15 +59,25 @@ router.post('/write', (req, res) => {
 
 router.get('/read/:id', (req, res) => {
   connection.query(`SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`, (err, result) => {
-    if(!err){
-      let [day, month, date, year] = result[0].INS_DATE.toString().split(' ');
-      result[0].INS_DATE = year + '/' + monthToNum(month) + '/' + date
-      res.render('layouts/read', {
-        thread: result[0],
-        style: "/css/thread"
-      })
-    } else {
-      console.log('Error in retreiving thread : ' + err);
+    try {
+      if(!err && result.length > 0){
+        let [day, month, date, year] = result[0].INS_DATE.toString().split(' ');
+        result[0].INS_DATE = year + '/' + monthToNum(month) + '/' + date
+        res.render('layouts/read', {
+          thread: result[0],
+          style: "/css/thread"
+        })
+      } else {
+        if(result.length > 0){
+          console.log('NO RESULT')
+        } else {
+          console.log('Error in retreiving thread : ' + err);
+        }
+        res.redirect('/')
+      } 
+    } catch (error) {
+      console.log('Error in retreiving thread : ' + error);
+      res.redirect('/');
     }
   })
 })
