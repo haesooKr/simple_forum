@@ -2,7 +2,9 @@
   <div class="num">{{thread.THREAD_NUM}}</div>
   <div class="subject">{{thread.THREAD_SUBJECT}}</div>
   <div class="writer">{{thread.THREAD_WRITER}}</div>
-  <div class="content">{{thread.THREAD_CONTENT}}</div>
+  <textarea name="content" style="display: none">{{thread.THREAD_CONTENT}}</textarea>
+  <div id="editor">
+  </div>
   <div class="hits"><span>view: </span>{{thread.THREAD_HITS}}</div>
   <div class="likes"><span>like: </span>{{thread.THREAD_LIKE}}</div>
   <div class="date">{{thread.INS_DATE}}</div>
@@ -11,3 +13,21 @@
   <a href="/update/{{thread.THREAD_NUM}}">수정</a>
   <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
 </div>
+
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+<script>
+  var quill = new Quill('#editor', {
+    modules: {
+      toolbar: false,
+    },
+    theme: 'snow',
+    readOnly: true
+  });
+  const json = document.querySelector('textarea[name=content]').innerHTML;
+  quill.setContents(
+    JSON.parse(json)
+  );
+</script>
