@@ -2,10 +2,32 @@
   width: 100%;
 }
 
-.forum a {
+.forum h3 {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.forum .link-thread {
+  color: black;
+  text-decoration: none;
   display: block;
   width: 100%;
+  margin-bottom: 5px;
 }
+.forum .link-thread:first-of-type{
+  border-top: 1px solid #eee;
+  padding-top: 5px;
+}
+.forum .link-thread:nth-child(even){
+  background-color: #eee;
+}
+.forum .link-thread:last-of-type{
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+/* thread starts */
 
 .thread {
   display: flex;
@@ -16,19 +38,65 @@
 .thread-header {
   display: none;
 }
-
-.thread .upper, .thread .lower {
-  display: flex;
-}
-
 .thread-num {
   margin: 0 10px;
 }
-
-.thread-hits, .thread-likes {
-  flex: 1;
+.thread-subject {
+  font-weight: bold;
+  font-size: 13px;
 }
-.thread-writer, .thread-ate {
-  flex: 2;
+.thread .upper, .thread .lower {
+  display: flex;
+}
+.thread-writer{
+  font-weight: bold;
+}
+.thread .lower{
+  font-size: 12px;
+}
+.thread .lower div{
+  margin: 0 5px;
 }
 
+/* pagination starts */
+
+.pagination ul{
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+.pagination li.active a {
+  color: red;
+}
+.pagination a {
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  background-color: #eee;
+  padding: 2px 5px;
+  margin-right: 10px;
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+  text-decoration: none;
+  color: black;
+}
+
+/* forum-footer */
+.forum-footer {
+  border-top: 1px solid rgb(204, 204, 204);
+  margin-top: 10px;
+  padding-top: 10px;
+  text-align: right;
+}
+.forum-footer a {
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  background-color: #eee;
+  padding: 2px 5px;
+  margin-right: 10px;
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+}
