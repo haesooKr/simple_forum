@@ -5,6 +5,7 @@ const connection = require("../models/db");
 let threadsPerPg = 10;
 
 router.get("/", (req, res) => {
+  req.query.p = req.query.p || 1;
   connection.query(
     "SELECT * FROM THREAD ORDER BY THREAD_NUM DESC;",
     (err, result) => {
