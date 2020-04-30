@@ -77,7 +77,7 @@ router.get('/update/:id', (req, res) => {
     if(!err){
       res.render('layouts/update', {
         thread: result[0],
-        style: "/css/update"
+        style: "/css/thread"
       })
     } else {
       console.log('Error in retreiving thread : ' + err);
