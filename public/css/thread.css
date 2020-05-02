@@ -38,15 +38,28 @@
 .thread-header {
   display: none;
 }
-.thread-num {
-  margin: 0 10px;
+.thread .upper, .thread .lower {
+  display: flex;
+}
+.thread-notice {
+  border: 1px solid #eee;
+  font-size: 10px;
+  background-color: rgb(70, 162, 223);
+  color: white;
+  font-weight: bold;
+  margin-left: 5px;
+  padding: 0 3px;
 }
 .thread-subject {
+  margin-left: 5px;
   font-weight: bold;
   font-size: 13px;
 }
-.thread .upper, .thread .lower {
-  display: flex;
+.thread-comments {
+  font-size: 10px;
+  margin-left: 5px;
+  color: red;
+  font-weight: bold;
 }
 .thread-writer{
   font-weight: bold;
@@ -85,7 +98,6 @@
 
 /* forum-footer */
 .forum-footer {
-  border-top: 1px solid rgb(204, 204, 204);
   margin-top: 10px;
   padding-top: 10px;
   text-align: right;
