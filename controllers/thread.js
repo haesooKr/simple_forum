@@ -67,6 +67,9 @@ router.post("/write", (req, res) => {
 
 router.get("/read/:id", (req, res) => {
   connection.query(
+    `UPDATE THREAD SET THREAD_HITS = THREAD_HITS + 1 WHERE THREAD_NUM = ${req.params.id};`
+  )
+  connection.query(
     `SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`,
     (err, result) => {
       if (!err) {
