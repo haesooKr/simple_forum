@@ -8,6 +8,13 @@
   <textarea name="content" style="display: none">{{thread.THREAD_CONTENT}}</textarea>
   <div id="editor">
   </div>
+
+  <div class="comments">
+    {{#each comments}}
+      <div class="comment-writer">{{this.WRITER}}</div>
+      <div class="comment-comment">{{this.COMMENT}}</div>
+    {{/each}}
+  </div>
 </div>
 <div class="admin-contoller">
   <a href="/update/{{thread.THREAD_NUM}}">수정</a>
