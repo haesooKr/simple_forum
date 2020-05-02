@@ -80,10 +80,16 @@ router.get("/read/:id", (req, res) => {
             " "
           );
           result[0].INS_DATE = year + "/" + monthToNum(month) + "/" + date;
-          res.render("layouts/read", {
-            thread: result[0],
-            style: "/css/thread",
-          });
+          connection.query(
+            `SELECT WRITER, COMMENT FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
+            (err, comments) => {
+              res.render("layouts/read", {
+                thread: result[0],
+                comments,
+                style: "/css/thread",
+              });
+            }
+          )
         }
       } else {
         console.log("Error in retreiving thread : " + err);
