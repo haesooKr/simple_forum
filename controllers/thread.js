@@ -7,7 +7,7 @@ let threadsPerPg = 10;
 router.get("/", (req, res) => {
   req.query.p = req.query.p || 1;
   connection.query(
-    "SELECT * FROM THREAD ORDER BY THREAD_NUM DESC;",
+    "SELECT * FROM (SELECT * FROM ( SELECT * FROM THREAD ) AS ORIGINAL JOIN ( SELECT THREAD_NUM AS tk,COUNT(THREAD_NUM) AS COMMENTS_COUNT FROM COMMENT GROUP BY tk HAVING COUNT(tk) > 1) AS COUNT ON ORIGINAL.THREAD_NUM = COUNT.tk UNION DISTINCT SELECT * FROM ( SELECT * FROM THREAD WHERE COMMENT_YN != 1) AS ORIGINAL2 JOIN ( SELECT 0 AS tk, 0 AS COMMENTS_COUNT ) AS COUNT2 ) AS RESULT WHERE RESULT.DEL_YN != 1 ORDER BY RESULT.THREAD_NUM DESC;",
     (err, result) => {
       if (!err) {
         for (let i = 0; i < result.length; i++) {
