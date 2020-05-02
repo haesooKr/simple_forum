@@ -138,7 +138,7 @@ router.post("/update/:id", (req, res) => {
 
 router.get("/delete/:id", (req, res) => {
   connection.query(
-    `DELETE FROM THREAD WHERE THREAD_NUM = ${req.params.id};`,
+    `UPDATE THREAD SET DEL_YN = 1 WHERE THREAD_NUM = ${req.params.id};`,
     (err, result) => {
       if (!err) {
         res.redirect("/");
@@ -148,6 +148,20 @@ router.get("/delete/:id", (req, res) => {
     }
   );
 });
+
+router.get('/comment/like/:id', (req, res) => {
+  console.log(req.params.id)
+  connection.query(
+    `UPDATE THREAD SET THREAD_LIKES = THREAD_LIKES + 1 WHERE THREAD_NUM = ${req.params.id};`,
+    (err, result) => {
+      if(!err){
+        res.redirect(`/read/${req.params.id}`);
+      } else {
+        console.log("Error in comment like : " + err);
+      }
+    }
+  )
+})
 
 router.post("/comment", (req, res) => {
   const {nickname, comment, number} = req.body;
