@@ -3,12 +3,11 @@
   <div class="subject">{{thread.THREAD_SUBJECT}}</div>
   <div class="writer">{{thread.THREAD_WRITER}}</div>
   <div class="hits"><span>view: </span>{{thread.THREAD_HITS}}</div>
-  <div class="likes"><span>like: </span>{{thread.THREAD_LIKE}}</div>
+  <div class="likes"><span>like: </span>{{thread.THREAD_LIKES}}</div>
   <div class="date">{{thread.INS_DATE}}</div>
   <textarea name="content" style="display: none">{{thread.THREAD_CONTENT}}</textarea>
   <div id="editor">
   </div>
-
   <div class="comments">
     {{#each comments}}
       <div class="comment-writer">{{this.WRITER}}</div>
@@ -23,6 +22,7 @@
           <button type="submit">댓글쓰기</button>
         </form>
       </div>
+      <a href="/comment/like/{{thread.THREAD_NUM}}">좋아요</button>
     </div>
   </div>
 </div>
