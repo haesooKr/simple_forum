@@ -86,7 +86,7 @@ router.get("/read/:id", (req, res) => {
               res.render("layouts/read", {
                 thread: result[0],
                 comments,
-                style: "/css/thread",
+                style: "/css/read",
               });
             }
           )
@@ -148,6 +148,21 @@ router.get("/delete/:id", (req, res) => {
     }
   );
 });
+
+router.post("/comment", (req, res) => {
+  const {nickname, comment, number} = req.body;
+  connection.query(
+    `INSERT INTO COMMENT (THREAD_NUM, WRITER, COMMENT) VALUES ('${number}', '${nickname}', '${comment}');`, 
+    (err, result) => {
+      if(!err){
+        res.redirect(`/read/${number}`);  
+      } else {
+        console.log("Error in comment creating : " + err);
+      }
+      
+    }
+  )
+})
 
 function monthToNum(month) {
   switch (month) {
