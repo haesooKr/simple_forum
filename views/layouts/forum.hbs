@@ -1,7 +1,6 @@
 <div class="forum">
   <h3>게시판</h3>
   <div class="thread-header">
-    <div>글번호</div>
     <div>제목</div>
     <div>작성자</div>
     <div>조회수</div>
@@ -12,8 +11,13 @@
   <a href="/read/{{this.THREAD_NUM}}" class="link-thread">
     <div class="thread">
       <div class="upper">
-        <div class="thread-num">{{this.THREAD_NUM}}</div>
+        {{#if this.ADMIN_YN}}
+        <div class="thread-notice">공지</div>
+        {{/if}}
         <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
+        {{#if this.COMMENTS_COUNT}}
+        <div class="thread-comments">+{{this.COMMENTS_COUNT}}</div>
+        {{/if}}
       </div>
       <div class="lower">
         <div class="thread-writer">{{this.THREAD_WRITER}}</div>
