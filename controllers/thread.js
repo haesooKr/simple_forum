@@ -47,7 +47,7 @@ router.get("/", (req, res) => {
 
 router.get("/write", (req, res) => {
   res.render("layouts/write", {
-    style: "/css/thread",
+    style: "/css/writeUpdate",
   });
 });
 
@@ -109,7 +109,7 @@ router.get("/update/:id", (req, res) => {
         } else {
           res.render("layouts/update", {
             thread: result[0],
-            style: "/css/thread",
+            style: "/css/writeUpdate",
           });
         }
       } else {
