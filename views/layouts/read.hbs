@@ -1,34 +1,37 @@
 <div class="thread-detail">
-  <div class="num">{{thread.THREAD_NUM}}</div>
-  <div class="subject">{{thread.THREAD_SUBJECT}}</div>
-  <div class="writer">{{thread.THREAD_WRITER}}</div>
-  <div class="hits"><span>view: </span>{{thread.THREAD_HITS}}</div>
-  <div class="likes"><span>like: </span>{{thread.THREAD_LIKES}}</div>
-  <div class="date">{{thread.INS_DATE}}</div>
+  <div class="subject">제목: {{thread.THREAD_SUBJECT}}</div>
+  <div class="writer">작성자: {{thread.THREAD_WRITER}}</div>
+  <div class="subInfo">
+    <div class="hits"><span>조회수: </span>{{thread.THREAD_HITS}}</div>
+    <div class="likes"><span>추천수: </span>{{thread.THREAD_LIKES}}</div>
+    <div class="date">날짜: {{thread.INS_DATE}}</div>
+  </div>
   <textarea name="content" style="display: none">{{thread.THREAD_CONTENT}}</textarea>
-  <div id="editor">
+  <div id="editor" class="content">
   </div>
   <div class="comments">
+    <h6>댓글</h6>
     {{#each comments}}
-      <div class="comment-writer">{{this.WRITER}}</div>
-      <div class="comment-comment">{{this.COMMENT}}</div>
+    <div class="comment">
+      <div class="cc">{{this.COMMENT}}</div>
+      <div class="cSub">{{this.WRITER}}</div>
+    </div>
     {{/each}}
     <div class="comments-tool">
-      <div class="addCommentBox">
-        <form action="/comment" method="POST">
-          <input type="text" name="nickname" placeholder="닉네임">
-          <input type="text" name="comment" placeholder="내용">
-          <input type="hidden" name="number" value="{{thread.THREAD_NUM}}">
-          <button type="submit">댓글쓰기</button>
-        </form>
-      </div>
-      <a href="/comment/like/{{thread.THREAD_NUM}}">좋아요</button>
+      <form action="/comment" method="POST">
+        <h6>댓글달기</h6>
+        <label for="nickname">닉네임: </label><input type="text" name="nickname" placeholder="닉네임">
+        <label for="comment">내용: </label><input type="text" name="comment" placeholder="내용">
+        <input type="hidden" name="number" value="{{thread.THREAD_NUM}}">
+        <button type="submit">댓글쓰기</button>
+      </form>
     </div>
   </div>
-</div>
-<div class="admin-contoller">
-  <a href="/update/{{thread.THREAD_NUM}}">수정</a>
-  <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
+  <div class="thread-controller">
+    <a href="/comment/like/{{thread.THREAD_NUM}}">좋아요</a>
+    <a href="/update/{{thread.THREAD_NUM}}">수정</a>
+    <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
+  </div>
 </div>
 
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
