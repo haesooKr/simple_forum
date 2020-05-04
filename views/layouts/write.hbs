@@ -1,17 +1,18 @@
-<form action="/write" method="POST">
-  <input type="text" name="writer" placeholder="작성자">
-  <input type="text" name="subject" placeholder="제목">
-  <textarea style="display: none;" name="content" id="" cols="30" rows="10"></textarea>
-  <div id="editor">
-    <p><br></p>
-  </div>
-  <button type="submit">업로드</button>
-</form>
-
+<div class="dbForm">
+  <form action="/write" method="POST">
+    <div class="line"><label for="writer">작성자: </label><input type="text" name="writer" placeholder="작성자"></div>
+    <div class="line"><label for="subject">제목: </label><input type="text" name="subject" placeholder="제목"></div>
+    <textarea style="display: none;" name="content" id="" cols="30" rows="10"></textarea>
+    <div id="editor">
+      <p><br></p>
+    </div>
+    <button type="submit">업로드</button>
+  </form>
+</div>
 
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill-image-upload@0.1.3/image-upload.min.js"></script>
-
 <script src="/js/writeQuill.js"></script>
+<script src="/js/buttonTabIndex.js"></script>
