@@ -1,0 +1,41 @@
+.dbForm {
+  margin: 5px;
+  padding: 10px 5px;
+}
+.dbForm form{
+  display: flex;
+  flex-direction: column;
+}
+
+.dbForm .line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dbForm label, .dbForm input {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.dbForm input {
+  margin-left: 5px;
+  flex-grow: 100;
+  border: 1px solid rgb(139, 138, 138);
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+.dbForm button[type="submit"] {
+  align-self: flex-end;
+  width: 50px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  background-color: #eee;
+  margin-top: 10px;
+  padding: 2px 5px;
+  font-size: 12px;
+  text-decoration: none;
+  color: black;
+  
+}
