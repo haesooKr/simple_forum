@@ -5,9 +5,9 @@ const qlEditor = document.querySelector('.ql-editor');
 
 submitBtn.addEventListener('click', e => {
   let condition = true;
-  if( writer.value.length < 2 || writer.value.length > 20){
+  if( writer.value.length < 2 || writer.value.length > 15){
     condition = false;
-    alert('이름은 2글자에서 20글자 사이로 입력해주시기 바랍니다.')
+    alert('이름은 2글자에서 15글자 사이로 입력해주시기 바랍니다.')
   }
   if ( subject.value.length < 2 || subject.value.length > 50){
     condition = false;
