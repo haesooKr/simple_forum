@@ -3,8 +3,6 @@
   <input type="text" name="subject" placeholder="제목">
   <textarea style="display: none;" name="content" id="" cols="30" rows="10"></textarea>
   <div id="editor">
-    <p>Hello World!</p>
-    <p>Some initial <strong>bold</strong> text</p>
     <p><br></p>
   </div>
   <button type="submit">업로드</button>
@@ -16,48 +14,4 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill-image-upload@0.1.3/image-upload.min.js"></script>
 
-<script>
-  const toolbarOptions = [
-    ['bold', 'italic', 'underline', 'strike'],        
-    ['link'],
-
-
-    [{ 'header': 1 }, { 'header': 2 }],               
-    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-    [{ 'script': 'sub' }, { 'script': 'super' }],      
-    [{ 'indent': '-1' }, { 'indent': '+1' }],          
-    [{ 'direction': 'rtl' }],                        
-
-    [{ 'color': [] }, { 'background': [] }],         
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-
-    ['clean']                                         
-  ];
-
-  const quill = new Quill('#editor', {
-    theme: 'snow',
-    modules: {
-      toolbar: toolbarOptions,
-    }
-  });
-
-  const form = document.querySelector('form');
-  form.onsubmit = function () {
-
-    const about = document.querySelector('textarea[name=content]');
-    let json = JSON.stringify(quill.getContents());
-
-    json = json.split('').map(char => {
-      if (char === '\\') return '\\\\';
-      else {
-        return char;
-      }
-    }).join('');
-
-    about.value = json;
-
-    return true;
-  };
-
-</script>
+<script src="/js/writeQuill.js"></script>
