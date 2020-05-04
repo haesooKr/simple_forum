@@ -41,6 +41,9 @@
 .thread .upper, .thread .lower {
   display: flex;
 }
+.thread .upper {
+  margin: 6px 0;
+}
 .thread-notice {
   border: 1px solid #eee;
   font-size: 10px;
