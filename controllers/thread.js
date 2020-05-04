@@ -163,7 +163,12 @@ router.get('/comment/like/:id', (req, res) => {
 })
 
 router.post("/comment", (req, res) => {
-  const {nickname, comment, number} = req.body;
+  const {nickname, comment, number, commentYN} = req.body;
+  if(commentYN === '0'){
+    connection.query(
+      `UPDATE THREAD SET COMMENT_YN = 1 WHERE THREAD_NUM = ${number}`
+    )
+  }
   connection.query(
     `INSERT INTO COMMENT (THREAD_NUM, WRITER, COMMENT) VALUES ('${number}', '${nickname}', '${comment}');`, 
     (err, result) => {
