@@ -96,24 +96,32 @@ router.get("/read/:id", (req, res) => {
   connection.query(
     `SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`,
     (err, result) => {
-      if (!err) {
-        if (Array.isArray(result) && result.length === 0) {
-          res.redirect("/");
+      if (!err && result.length > 0) {
+        const pwdExist = result[0].PWD_YN === 1  ? true : false;
+        if(pwdExist){
+          res.render("layouts/authentication", {
+            id: req.params.id,
+            style: "/css/authentication"
+          })
         } else {
-          let [day, month, date, year] = result[0].INS_DATE.toString().split(
-            " "
-          );
-          result[0].INS_DATE = year + "/" + monthToNum(month) + "/" + date;
-          connection.query(
-            `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
-            (err, comments) => {
-              res.render("layouts/read", {
-                thread: result[0],
-                comments,
-                style: "/css/read",
-              });
-            }
-          )
+          if (Array.isArray(result) && result.length === 0) {
+            res.redirect("/");
+          } else {
+            let [day, month, date, year] = result[0].INS_DATE.toString().split(
+              " "
+            );
+            result[0].INS_DATE = year + "/" + monthToNum(month) + "/" + date;
+            connection.query(
+              `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
+              (err, comments) => {
+                res.render("layouts/read", {
+                  thread: result[0],
+                  comments,
+                  style: "/css/read",
+                });
+              }
+            )
+          }
         }
       } else {
         console.log("Error in retreiving thread : " + err);
@@ -121,6 +129,42 @@ router.get("/read/:id", (req, res) => {
       }
     }
   );
+});
+
+router.post("/read", (req, res) => {
+  connection.query(
+    `UPDATE THREAD SET THREAD_HITS = THREAD_HITS + 1 WHERE THREAD_NUM = ${req.body.id};`
+  )
+  connection.query(
+    `SELECT * FROM PASSWORD WHERE THREAD_NUM = ${req.body.id};`,
+    (err, result) => {
+      if(req.body.password === result[0].PWD){
+        connection.query(
+          `SELECT * FROM THREAD WHERE THREAD_NUM = ${req.body.id};`,
+          (err, result) => {
+            if (Array.isArray(result) && result.length === 0) {
+              res.redirect("/");
+            } else {
+              let [day, month, date, year] = result[0].INS_DATE.toString().split(
+                " "
+              );
+              result[0].INS_DATE = year + "/" + monthToNum(month) + "/" + date;
+              connection.query(
+                `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
+                (err, comments) => {
+                  res.render("layouts/read", {
+                    thread: result[0],
+                    comments,
+                    style: "/css/read",
+                  });
+                }
+              )
+            }
+          })
+      } else {
+        res.redirect(`/read/${req.body.id}`)
+      }
+    })
 });
 
 router.get("/update/:id", (req, res) => {
