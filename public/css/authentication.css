@@ -1,0 +1,39 @@
+.auth-password {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  margin-top: 20px;
+  height: 100px;
+  border: 1px solid #000;
+  background-color: #eee;
+}
+
+.auth-password form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.auth-password form * {
+  margin: 3px;
+}
+
+.auth-password h6 {
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-password input[type="password"]{
+  border: 1px solid #000;
+}
+
+.auth-password button {
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  background-color: #eee;
+  padding: 2px 5px;
+  font-size: 12px;
+  width: 50px;
+  color: black;
+}

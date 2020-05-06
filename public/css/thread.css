@@ -53,6 +53,15 @@
   margin-left: 5px;
   padding: 0 3px;
 }
+.thread-secret {
+  border: 1px solid #eee;
+  font-size: 10px;
+  background-color: rgb(255, 123, 0);
+  color: white;
+  font-weight: bold;
+  margin-left: 5px;
+  padding: 0 3px;
+}
 .thread-subject {
   margin-left: 5px;
   font-weight: bold;
@@ -93,8 +102,6 @@
   padding: 2px 5px;
   margin-right: 10px;
   font-size: 12px;
-  text-decoration: none;
-  color: black;
   text-decoration: none;
   color: black;
 }
