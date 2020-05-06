@@ -3,11 +3,11 @@
     <div class="line"><label for="writer">작성자: </label><input type="text" name="writer" placeholder="작성자" value={{thread.THREAD_WRITER}}></div>
     <div class="line"><label for="subject">제목: </label><input type="text" name="subject" placeholder="제목" value={{thread.THREAD_SUBJECT}}></div>
     <div class="line"><label for="password">비밀번호: </label><input type="text" name="password" placeholder="새로운 비밀번호를 원하시면 입력해주세요."></div>
-    {{!-- 비밀번호있어도 보여주지는 않음 비밀번호 입력 안하면 비밀번호 업데이트 안함 --}}
     <textarea name="content" style="display: none;">{{thread.THREAD_CONTENT}}</textarea>
     <div id="editor">
     </div>
-    <button type="submit">수정</button>
+    <button type="submit">업로드</button>
+    <a href="javascript:history.back()">뒤로가기</a>
   </form>
 
 </div>
