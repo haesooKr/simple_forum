@@ -26,6 +26,7 @@ router.get("/", (req, res) => {
         let end = start + threadsPerPg;
 
         res.render("layouts/forum", {
+          session: req.session,
           thread: result,
           style: "/css/thread",
           pagination: {
@@ -47,6 +48,7 @@ router.get("/", (req, res) => {
 
 router.get("/write", (req, res) => {
   res.render("layouts/write", {
+    session: req.session,
     style: "/css/writeUpdate",
   });
 });
@@ -54,7 +56,6 @@ router.get("/write", (req, res) => {
 router.post("/write", (req, res) => {
   let { writer, subject, content, password } = req.body;
   if(password){
-    console.log('비밀번호 있음')
     connection.query(
       `INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT, PWD_YN) VALUES ('${writer}', '${subject}', '${content}', '1')`,
       (err, result) => {
@@ -90,8 +91,12 @@ router.post("/write", (req, res) => {
 });
 
 router.get("/read/:id", (req, res) => {
+  if(isNaN(Number(req.params.id))){
+    res.redirect('/');
+    return;
+  }
   connection.query(
-    `UPDATE THREAD SET THREAD_HITS = THREAD_HITS + 1 WHERE THREAD_NUM = ${req.params.id};`
+    `UPDATE THREAD SET THREAD_HITS = THREAD_HITS + 1 WHERE THREAD_NUM = ${req.params.id};`,
   )
   connection.query(
     `SELECT * FROM THREAD WHERE THREAD_NUM = ${req.params.id};`,
@@ -100,6 +105,7 @@ router.get("/read/:id", (req, res) => {
         const pwdExist = result[0].PWD_YN === 1  ? true : false;
         if(pwdExist){
           res.render("layouts/authentication", {
+            session: req.session,
             id: req.params.id,
             style: "/css/authentication"
           })
@@ -115,6 +121,7 @@ router.get("/read/:id", (req, res) => {
               `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
               (err, comments) => {
                 res.render("layouts/read", {
+                  session: req.session,
                   thread: result[0],
                   comments,
                   style: "/css/read",
@@ -153,6 +160,7 @@ router.post("/read", (req, res) => {
                 `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
                 (err, comments) => {
                   res.render("layouts/read", {
+                    session: req.session,
                     thread: result[0],
                     comments,
                     style: "/css/read",
@@ -176,6 +184,7 @@ router.get("/update/:id", (req, res) => {
           res.redirect("/");
         } else {
           res.render("layouts/update", {
+            session: req.session,
             thread: result[0],
             style: "/css/writeUpdate",
           });
@@ -248,6 +257,17 @@ router.post("/comment", (req, res) => {
       
     }
   )
+})
+
+router.get("/admin", (req, res) => {
+  if(req.session.admin){
+    req.session.admin = false;
+    res.send('You are not admin')
+  } else {
+    req.session.admin = true;
+    res.send('You are admin')
+  }
+  console.log(req.session.admin);
 })
 
 function monthToNum(month) {
