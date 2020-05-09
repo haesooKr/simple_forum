@@ -31,8 +31,10 @@
   <div class="thread-controller">
     <a href="/comment/like/{{thread.THREAD_NUM}}">좋아요</a>
     <a href="javascript:history.back()">목록</a>
-    <a href="/update/{{thread.THREAD_NUM}}">수정</a>
-    <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
+    {{#if session.admin}}
+      <a href="/update/{{thread.THREAD_NUM}}">수정</a>
+      <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
+    {{/if}}
   </div>
 </div>
 
