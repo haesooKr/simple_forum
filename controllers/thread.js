@@ -103,7 +103,7 @@ router.get("/read/:id", (req, res) => {
     (err, result) => {
       if (!err && result.length > 0) {
         const pwdExist = result[0].PWD_YN === 1  ? true : false;
-        if(pwdExist){
+        if(pwdExist && !req.session.admin){
           res.render("layouts/authentication", {
             session: req.session,
             id: req.params.id,
