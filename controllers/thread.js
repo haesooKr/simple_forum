@@ -55,7 +55,28 @@ router.get("/write", (req, res) => {
 
 router.post("/write", (req, res) => {
   let { writer, subject, content, password } = req.body;
-  if(password){
+  if(req.session.admin){
+    connection.query(
+      `INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT, PWD_YN, ADMIN_YN) VALUES ('${writer}', '${subject}', '${content}', '1', '1')`,
+      (err, result) => {
+        if(!err){
+          connection.query(
+            `INSERT INTO PASSWORD (THREAD_NUM, PWD) VALUES ('${result.insertId}', '${password || "admin"}');`, 
+            (err, result) => {
+              if(!err){
+                res.redirect("/");
+              } else {
+                console.log("Error in password insertion : " + err);
+              }
+            }
+          )
+        } else {
+          console.log("Error in thread insertion : " + err);
+        }
+      }
+    );
+  }
+  else if(password){
     connection.query(
       `INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT, PWD_YN) VALUES ('${writer}', '${subject}', '${content}', '1')`,
       (err, result) => {
