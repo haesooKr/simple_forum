@@ -40,7 +40,7 @@ router.get("/", (req, res) => {
           },
         });
       } else {
-        console.log("Error in retrieving employee list : " + err);
+        console.log("Error in retrieving thread list : " + err);
       }
     }
   );
