@@ -48,14 +48,14 @@ router.get("/", (req, res) => {
 
 router.get("/write", (req, res) => {
   res.render("layouts/write", {
-    session: req.session,
+    session: req.sessionStore,
     style: "/css/writeUpdate",
   });
 });
 
 router.post("/write", (req, res) => {
   let { writer, subject, content, password } = req.body;
-  if(req.session.admin){
+  if(req.sessionStore.admin){
     connection.query(
       `INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT, PWD_YN, ADMIN_YN) VALUES ('${writer}', '${subject}', '${content}', '1', '1')`,
       (err, result) => {
@@ -124,9 +124,9 @@ router.get("/read/:id", (req, res) => {
     (err, result) => {
       if (!err && result.length > 0) {
         const pwdExist = result[0].PWD_YN === 1  ? true : false;
-        if(pwdExist && !req.session.admin){
+        if(pwdExist && !req.sessionStore.admin){
           res.render("layouts/authentication", {
-            session: req.session,
+            session: req.sessionStore,
             id: req.params.id,
             style: "/css/authentication"
           })
@@ -142,7 +142,7 @@ router.get("/read/:id", (req, res) => {
               `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
               (err, comments) => {
                 res.render("layouts/read", {
-                  session: req.session,
+                  session: req.sessionStore,
                   thread: result[0],
                   comments,
                   style: "/css/read",
@@ -181,7 +181,7 @@ router.post("/read", (req, res) => {
                 `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
                 (err, comments) => {
                   res.render("layouts/read", {
-                    session: req.session,
+                    session: req.sessionStore,
                     thread: result[0],
                     comments,
                     style: "/css/read",
@@ -205,7 +205,7 @@ router.get("/update/:id", (req, res) => {
           res.redirect("/");
         } else {
           res.render("layouts/update", {
-            session: req.session,
+            session: req.sessionStore,
             thread: result[0],
             style: "/css/writeUpdate",
           });
@@ -281,14 +281,13 @@ router.post("/comment", (req, res) => {
 })
 
 router.get("/admin", (req, res) => {
-  if(req.session.admin){
-    req.session.destory();
+  if(req.sessionStore.admin === true){
+    req.sessionStore.admin = false;
     res.send('You are not admin')
   } else {
-    req.session.admin = true;
+    req.sessionStore.admin = true;
     res.send('You are admin')
   }
-  console.log(req.session.admin);
 })
 
 function monthToNum(month) {
