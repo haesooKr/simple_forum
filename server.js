@@ -20,6 +20,9 @@ const thread = require('./controllers/thread');
 app.use(cookieParser());
 app.use(session({
   secret: "10181018",
+  cookie: {
+    maxAge: 60000
+  },
   resave: false,
   saveUninitialized: false
 }))
