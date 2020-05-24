@@ -24,7 +24,7 @@ app.use(session({
     maxAge: 60000
   },
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }))
 app.use(bodyParser.urlencoded({
   extended: true
