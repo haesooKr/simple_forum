@@ -282,7 +282,7 @@ router.post("/comment", (req, res) => {
 
 router.get("/admin", (req, res) => {
   if(req.session.admin){
-    req.session.admin = false;
+    req.session.destory();
     res.send('You are not admin')
   } else {
     req.session.admin = true;

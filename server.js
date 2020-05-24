@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const cookieSession = require('cookie-session');
+const session = require('express-session');
 const path = require('path');
 const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
@@ -18,10 +18,10 @@ const app = express();
 const thread = require('./controllers/thread');
 
 app.use(cookieParser());
-app.use(cookieSession({
-  name: "session",
-  keys: [10181018],
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+app.use(session({
+  secret: "10181018",
+  resave: false,
+  saveUninitialized: false
 }))
 app.use(bodyParser.urlencoded({
   extended: true
