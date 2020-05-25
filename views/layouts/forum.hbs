@@ -1,21 +1,21 @@
 <div class="forum">
-  <h3>게시판</h3>
+  <h3>Forum</h3>
   <div class="thread-header">
-    <div>제목</div>
-    <div>작성자</div>
-    <div>날짜</div>
-    <div>조회수</div>
-    <div>추천수</div>
+    <div>Title</div>
+    <div>Nickname</div>
+    <div>Date</div>
+    <div>View</div>
+    <div>Like</div>
   </div>
   {{#customEach custom}}
   <a href="/read/{{this.THREAD_NUM}}" class="link-thread">
     <div class="thread">
       <div class="upper">
         {{#if this.ADMIN_YN}}
-        <div class="thread-notice">공지</div>
+        <div class="thread-notice">Notice</div>
         {{/if}}
         {{#if this.PWD_YN}}
-        <div class="thread-secret">비밀글</div>
+        <div class="thread-secret">Password</div>
         {{/if}}
         <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
         {{#if this.COMMENTS_COUNT}}
@@ -25,8 +25,8 @@
       <div class="lower">
         <div class="thread-writer">{{this.THREAD_WRITER}}</div>
         <div class="tread-date">{{this.INS_DATE}}</div>
-        <div class="thread-hits"><span>조회 </span>{{this.THREAD_HITS}}</div>
-        <div class="thread-likes"><span>추천 </span>{{this.THREAD_LIKES}}</div>
+        <div class="thread-hits">{{this.THREAD_HITS}}</div>
+        <div class="thread-likes">{{this.THREAD_LIKES}}</div>
       </div>
     </div>
   </a>
@@ -34,23 +34,23 @@
   <div class="pagination">
     <ul>
       {{#paginate pagination type="first"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="/?p={{n}}">처음</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="/?p={{n}}">First</a></li>
       {{/paginate}}
       {{#paginate pagination type="previous"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">이전</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Prev</a></li>
       {{/paginate}}
       {{#paginate pagination type="middle" limit="10"}}
       <li {{#if active}}class="active" {{/if}}><a href="?p={{n}}">{{n}}</a></li>
       {{/paginate}}
       {{#paginate pagination type="next"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">다음</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Next</a></li>
       {{/paginate}}
       {{#paginate pagination type="last"}}
-      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">마지막</a></li>
+      <li {{#if disabled}}class="disabled" {{/if}}><a href="?p={{n}}">Last</a></li>
       {{/paginate}}
     </ul>
   </div>
   <div class="forum-footer">
-    <a href="/write">글쓰기</a>
+    <a href="/write">Write</a>
   </div>
 </div>

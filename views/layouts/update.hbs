@@ -1,13 +1,13 @@
 <div class="dbForm">
   <form action="/update/{{thread.THREAD_NUM}}" method="POST">
-    <div class="line"><label for="writer">작성자: </label><input type="text" name="writer" placeholder="작성자" value={{thread.THREAD_WRITER}}></div>
-    <div class="line"><label for="subject">제목: </label><input type="text" name="subject" placeholder="제목" value={{thread.THREAD_SUBJECT}}></div>
-    <div class="line"><label for="password">비밀번호: </label><input type="text" name="password" placeholder="새로운 비밀번호를 원하시면 입력해주세요."></div>
+    <div class="line"><label for="writer">Nickname: </label><input type="text" name="writer" placeholder="Nickname" value={{thread.THREAD_WRITER}}></div>
+    <div class="line"><label for="subject">Title: </label><input type="text" name="subject" placeholder="Title" value={{thread.THREAD_SUBJECT}}></div>
+    <div class="line"><label for="password">Password: </label><input type="text" name="password" placeholder="Type password if you want the new password"></div>
     <textarea name="content" style="display: none;">{{thread.THREAD_CONTENT}}</textarea>
     <div id="editor">
     </div>
-    <button type="submit">업로드</button>
-    <a href="javascript:history.back()">뒤로가기</a>
+    <button type="submit">Upload</button>
+    <a href="javascript:history.back()">Back</a>
   </form>
 
 </div>

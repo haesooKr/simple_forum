@@ -1,16 +1,16 @@
 <div class="thread-detail">
-  <div class="subject">제목: {{thread.THREAD_SUBJECT}}</div>
-  <div class="writer">작성자: {{thread.THREAD_WRITER}}</div>
+  <div class="subject">Title: {{thread.THREAD_SUBJECT}}</div>
+  <div class="writer">Nickname: {{thread.THREAD_WRITER}}</div>
   <div class="subInfo">
-    <div class="hits"><span>조회수: </span>{{thread.THREAD_HITS}}</div>
-    <div class="likes"><span>추천수: </span>{{thread.THREAD_LIKES}}</div>
-    <div class="date">날짜: {{thread.INS_DATE}}</div>
+    <div class="hits"><span>View: </span>{{thread.THREAD_HITS}}</div>
+    <div class="likes"><span>Like: </span>{{thread.THREAD_LIKES}}</div>
+    <div class="date">Date: {{thread.INS_DATE}}</div>
   </div>
   <textarea name="content" style="display: none">{{thread.THREAD_CONTENT}}</textarea>
   <div id="editor" class="content">
   </div>
   <div class="comments">
-    <h6>댓글</h6>
+    <h6>Comment</h6>
     {{#each comments}}
     <div class="comment">
       <div class="cc">{{this.COMMENT}}</div>
@@ -19,21 +19,21 @@
     {{/each}}
     <div class="comments-tool">
       <form action="/comment" method="POST">
-        <h6>댓글달기</h6>
-        <label for="nickname">닉네임: </label><input type="text" name="nickname" placeholder="닉네임">
-        <label for="comment">내용: </label><input type="text" name="comment" placeholder="내용">
+        <h6>Write Comment</h6>
+        <label for="nickname">Nickname: </label><input type="text" name="nickname" placeholder="Nickname">
+        <label for="comment">Content: </label><input type="text" name="comment" placeholder="Content">
         <input type="hidden" name="number" value="{{thread.THREAD_NUM}}">
         <input type="hidden" name="commentYN" value="{{thread.COMMENT_YN}}">
-        <button type="submit">댓글쓰기</button>
+        <button type="submit">Write</button>
       </form>
     </div>
   </div>
   <div class="thread-controller">
-    <a href="/comment/like/{{thread.THREAD_NUM}}">좋아요</a>
-    <a href="javascript:history.back()">목록</a>
+    <a href="/comment/like/{{thread.THREAD_NUM}}">Like</a>
+    <a href="javascript:history.back()">Back</a>
     {{#if session.admin}}
-      <a href="/update/{{thread.THREAD_NUM}}">수정</a>
-      <a href="/delete/{{thread.THREAD_NUM}}">삭제</a>
+      <a href="/update/{{thread.THREAD_NUM}}">Modify</a>
+      <a href="/delete/{{thread.THREAD_NUM}}">Delete</a>
     {{/if}}
   </div>
 </div>

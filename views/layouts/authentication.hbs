@@ -1,8 +1,11 @@
 <div class="auth-password">
   <form action="/read" method="POST">
-    <h6>암호를 입력해주세요.</h6>
+    <h6>Please type the password.</h6>
     <input type="hidden" name="id" value="{{id}}">
     <input type="password" name="password">
-    <button type="submit">입력</button>
+    <div class="wrapper">
+      <button type="submit">OK</button>
+      <a href="/">Back</a>
+    </div>
   </form>
 </div>
