@@ -28,7 +28,7 @@
   border: 1px solid #000;
 }
 
-.auth-password button {
+.auth-password button{
   border: 1px solid rgb(204, 204, 204);
   border-radius: 3px;
   background-color: #eee;
@@ -36,4 +36,17 @@
   font-size: 12px;
   width: 50px;
   color: black;
+}
+
+.auth-password a {
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 3px;
+  background-color: #eee;
+  padding: 2px 11.5px;
+  font-size: 12px;
+  width: 50px;
+  color: black;
+  text-align: center;
 }
