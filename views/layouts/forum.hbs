@@ -15,7 +15,7 @@
         <div class="thread-notice">Notice</div>
         {{/if}}
         {{#if this.PWD_YN}}
-        <div class="thread-secret">Password</div>
+        <div class="thread-secret">Private</div>
         {{/if}}
         <div class="thread-subject">{{this.THREAD_SUBJECT}}</div>
         {{#if this.COMMENTS_COUNT}}
@@ -25,8 +25,8 @@
       <div class="lower">
         <div class="thread-writer">{{this.THREAD_WRITER}}</div>
         <div class="tread-date">{{this.INS_DATE}}</div>
-        <div class="thread-hits">{{this.THREAD_HITS}}</div>
-        <div class="thread-likes">{{this.THREAD_LIKES}}</div>
+        <div class="thread-hits"><span class="mobile">View: </span>{{this.THREAD_HITS}}</div>
+        <div class="thread-likes"><span class="mobile">Like: </span>{{this.THREAD_LIKES}}</div>
       </div>
     </div>
   </a>

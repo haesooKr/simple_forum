@@ -67,6 +67,7 @@
   padding: 0 3px;
 }
 .thread-subject {
+  flex-shrink: 10;
   margin-left: 5px;
   font-weight: bold;
   font-size: 13px;
@@ -157,5 +158,9 @@
   .thread-header div:not(:first-child){
     flex: 1;
     text-align: center;
+  }
+
+  .mobile {
+    display: none;
   }
 }
