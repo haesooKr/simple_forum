@@ -97,7 +97,6 @@ router.post("/write", (req, res) => {
       }
     );
   } else {
-    console.log('비밀번호 없음')
     connection.query(
       `INSERT INTO THREAD (THREAD_WRITER, THREAD_SUBJECT, THREAD_CONTENT) VALUES ('${writer}', '${subject}', '${content}')`,
       (err, result) => {
