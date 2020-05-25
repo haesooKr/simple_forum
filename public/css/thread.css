@@ -45,6 +45,8 @@
   margin: 6px 0;
 }
 .thread-notice {
+  max-height: 16px;
+  min-width: 25.31px;
   border: 1px solid #eee;
   font-size: 10px;
   background-color: rgb(70, 162, 223);
@@ -54,6 +56,8 @@
   padding: 0 3px;
 }
 .thread-secret {
+  max-height: 16px;
+  min-width: 33.95px;
   border: 1px solid #eee;
   font-size: 10px;
   background-color: rgb(255, 123, 0);
@@ -121,4 +125,20 @@
   font-size: 12px;
   text-decoration: none;
   color: black;
+}
+
+@media only screen and (min-width: 769px){
+  .thread {
+    flex-direction: row;
+    align-items: center;
+  }
+  .upper {
+    flex: 1;
+  }
+  .lower {
+    flex: 1;
+  }
+  .lower div {
+    flex: 1;
+  }
 }
