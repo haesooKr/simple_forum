@@ -139,6 +139,23 @@
     flex: 1;
   }
   .lower div {
+    text-align: center;
     flex: 1;
+  }
+
+  .thread-header {
+    display: flex;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .thread-header div:first-child {
+    text-align: center;
+    margin: 0 6px;
+    flex: 4;
+  }
+  .thread-header div:not(:first-child){
+    flex: 1;
+    text-align: center;
   }
 }
