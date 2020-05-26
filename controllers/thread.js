@@ -178,7 +178,7 @@ router.post("/read", (req, res) => {
               );
               result[0].INS_DATE = year + "/" + monthToNum(month) + "/" + date;
               connection.query(
-                `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.params.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
+                `SELECT WRITER, COMMENT, COMMENT_INS_DATE FROM THREAD INNER JOIN COMMENT ON THREAD.THREAD_NUM = COMMENT.THREAD_NUM WHERE THREAD.THREAD_NUM = ${req.body.id} && COMMENT_DEL_YN = 0 ORDER BY COMMENT.COMMENT_INS_DATE DESC`,
                 (err, comments) => {
                   res.render("layouts/read", {
                     session: req.session,
