@@ -12,10 +12,12 @@ const exphbs = require('express-handlebars');
 const paginate = require('handlebars-paginate');
 const bodyParser = require('body-parser');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
+const favicon = require('serve-favicon');
 
 const app = express();
 const thread = require('./controllers/thread');
 
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 app.use(cookieParser());
 app.use(session({
   secret: "10181018",
