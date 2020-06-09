@@ -1,13 +1,13 @@
-## 게시판
+## Simple Forum 
 
-- [x] 게시판 글 CRUD
-- [x] 댓글 CR
-- [x] 조회수, 좋아요
-- [x] 관리자 로그인
-- [x] 게시글 비밀번호 설정
-- [x] 게시판 CSS
-- [] 사진 업로드 
-- [] 게시판 읽는곳에서도 게시글보이도록
+Simple CRUD Web Application 
+(*with Express, MySQL, Handlebars, Node*)
 
-관리자 세션
-수정 삭제 관리자글쓰기 비밀번호제한없음
+There is no register and authentication for user.
+It is Anonymous Forum.
+
+
+
+[Click to see Demo](https://simple-forum-2020.herokuapp.com/)
+
+The server is running on Heroku. If nothing shows up, please wait until the server load.
