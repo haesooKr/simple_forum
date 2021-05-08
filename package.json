@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^4.0.3",
     "express-session": "^1.17.1",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "handlebars-paginate": "^0.1.0",
     "mysql": "^2.18.1",
     "serve-favicon": "^2.5.0"
